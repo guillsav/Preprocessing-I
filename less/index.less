@@ -1,3 +1,89 @@
+// COLORS
+@dark-gray: @dove-gray;
+@light-gray: @gray-nurse;
+@dark-color: @darker;
+
+// PALETTE
+@dove-gray: #676767;
+@gray-nurse: #edeeed;
+@darker: #0f0e1f;
+
+// TYPOGRAPHY
+@font-size-regular: 1.6rem;
+@font-stack: 'Poppins', 'sans-serif';
+@line-height: 1.35;
+.main-title1() {
+  font-size: 3.4rem;
+  font-family: 'Lora', 'serif';
+  font-weight: 400;
+}
+
+.title2() {
+  font-size: 2.2rem;
+  font-family: 'Poppins', 'serif';
+  font-weight: 400;
+}
+
+.title3() {
+  font-size: 1.8rem;
+  font-family: 'Poppins', 'serif';
+  font-weight: 400;
+}
+
+.title4() {
+  font-size: 1.6rem;
+  color: @dark-gray;
+  font-family: 'Poppins', 'serif';
+  font-weight: 400;
+}
+
+// SPACING
+@sections-bottom-margin: 30px;
+
+// LAYOUT
+@border-radius: 5px;
+@border-radius-btn: 3px;
+
+// MIXINS
+.global-padding() {
+  padding: 20px 5%;
+}
+
+.center() {
+  padding: 1% 1%;
+}
+
+.margin-bottom() {
+  margin-bottom: 10px;
+}
+
+.btn() {
+  background: @dark-gray;
+  border-radius: @border-radius-btn;
+  color: white;
+  font-size: @font-size-regular;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  .center();
+  .margin-bottom();
+  .hover-btn();
+}
+
+.hover-btn() {
+  &:hover,
+  &:focus {
+    background: @dark-color;
+  }
+}
+
+.hover-links() {
+  &:hover,
+  &:focus {
+    color: @dark-color;
+  }
+}
+
 // Is this working?
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -138,28 +224,21 @@ html,
 body {
   height: 100%;
   font-size: 62.5%;
+  font-family: @font-stack;
+  line-height: @line-height;
 }
-
-// Colors
-// Gray
-@dark-gray: @dove-gray;
-
-// Specific colors
-@dove-gray: #676767;
-
-// Variables
-@font-stack: 'Poppins', sans-serif;
 
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 20px 5%;
+  .global-padding();
 }
 
 header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: @sections-bottom-margin;
 
   nav {
     width: 30%;
@@ -167,10 +246,61 @@ header {
     justify-content: space-between;
 
     a {
-      font-size: 1.6rem;
+      font-size: @font-size-regular;
       text-decoration: none;
       color: @dove-gray;
-      font-family: @font-stack;
+      cursor: pointer;
+      .hover-links();
     }
   }
+}
+
+#about {
+  display: flex;
+  flex-direction: column;
+  background: @light-gray;
+  .global-padding();
+  border-radius: @border-radius + @border-radius;
+
+  .me {
+    border-bottom: 1px dashed @dark-gray;
+    padding-bottom: 20px;
+
+    .avatar {
+      width: 20%;
+      margin-top: 20px;
+
+      img {
+        width: 100%;
+        border-radius: @border-radius + @border-radius;
+        .margin-bottom();
+      }
+    }
+
+    h1 {
+      .main-title1();
+      .margin-bottom();
+    }
+
+    h4 {
+      .title4();
+      .margin-bottom();
+    }
+  }
+
+  p {
+    margin-top: 20px;
+    font-size: @font-size-regular;
+    margin-bottom: 20px;
+  }
+
+  button {
+    width: 25%;
+    .btn();
+    margin-bottom: 40px;
+  }
+}
+
+#content {
+  display: flex;
 }
