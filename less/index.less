@@ -1,12 +1,16 @@
-// COLORS
+// COLOR VARIABLES
 @dark-gray: @dove-gray;
 @light-gray: @gray-nurse;
-@dark-color: @darker;
+@dark-color: @bg-gray;
+@table-gray: @alto;
+@hover-color: @hover;
 
-// PALETTE
+// COLOR PALETTE
 @dove-gray: #676767;
 @gray-nurse: #edeeed;
-@darker: #0f0e1f;
+@bg-gray: #3f50791d;
+@alto: #ddd;
+@hover: #0f0e1f;
 
 // TYPOGRAPHY
 @regular-font: 1.6rem;
@@ -16,7 +20,7 @@
 @xx-large-font: 3.4rem;
 @font-stack: 'Quicksand', 'sans-serif';
 @line-height-small: 1.35;
-@line-height-large: 1.5;
+@line-height-large: 1.8;
 
 .main-title1() {
   font-size: @xx-large-font;
@@ -52,6 +56,10 @@
 @large-spacing: 30px;
 @x-large-spacing: @large-spacing + 10;
 
+.center() {
+  padding: 1% 1%;
+}
+
 // LAYOUT
 @border-radius: 5px;
 @border-radius-btn: 3px;
@@ -60,39 +68,33 @@
   padding: @medium-spacing 5%;
 }
 
-.center() {
-  padding: 1% 1%;
-}
-
-.margin-bottom() {
-  margin-bottom: 10px;
-}
-
 .btn() {
-  background: @dark-gray;
+  background: none;
   border-radius: @border-radius-btn;
-  color: white;
+  color: @hover;
   font-size: @regular-font;
-  border: none;
+  border: 1px solid @hover;
   outline: none;
   cursor: pointer;
+  transition: background 0.2s;
   .center();
-  .margin-bottom();
   .hover-btn();
 }
 
 .hover-btn() {
   &:hover,
   &:focus {
-    background: @dark-color;
+    background: @hover;
+    color: white;
   }
 }
 
 .hover-links() {
   &:hover,
   &:focus {
-    color: @dark-color;
-    font-weight: 500;
+    color: white;
+    background: @hover;
+    border-radius: @border-radius;
   }
 }
 
@@ -242,7 +244,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   .global-padding();
 }
@@ -257,11 +259,22 @@ header {
     width: 40%;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+
+    .current {
+      color: @hover;
+      background: @light-gray;
+      border-radius: @border-radius;
+      font-weight: 500;
+    }
 
     a {
       font-size: @regular-font;
+      font-weight: 500;
       text-decoration: none;
       color: @dove-gray;
+      transition: color 0.2s;
+      padding: @small-spacing;
       cursor: pointer;
       .hover-links();
     }
@@ -271,13 +284,15 @@ header {
 #about {
   display: flex;
   flex-direction: column;
-  background: @light-gray;
+  align-items: flex-start;
+  background: @bg-gray;
   .global-padding();
   border-radius: @border-radius + @border-radius;
+  margin-bottom: @large-spacing + @medium-spacing;
 
   .me {
+    width: 100%;
     border-bottom: 1px dashed @dark-gray;
-    padding-bottom: @medium-spacing;
 
     .avatar {
       width: 20%;
@@ -286,33 +301,33 @@ header {
       img {
         width: 100%;
         border-radius: @border-radius + @border-radius;
-        .margin-bottom();
+        margin-bottom: @small-spacing;
       }
     }
 
     h1 {
       .main-title1();
       color: black;
-      .margin-bottom();
+      margin-bottom: @small-spacing;
     }
 
     h4 {
       .title4();
-      .margin-bottom();
+      color: black;
+      margin-bottom: @medium-spacing;
     }
   }
 
   p {
-    margin-top: @medium-spacing;
     font-size: @regular-font;
-    margin-bottom: @medium-spacing;
+    margin: @medium-spacing 0;
     color: black;
   }
 
   button {
     .btn();
     width: 25%;
-
+    margin-bottom: @medium-spacing;
     margin-bottom: @x-large-spacing;
   }
 }
@@ -322,6 +337,7 @@ header {
   justify-content: space-between;
   margin-top: @large-spacing;
   font-size: @regular-font;
+  margin-bottom: @large-spacing + @medium-spacing;
 
   .left-content {
     width: 48%;
@@ -329,6 +345,7 @@ header {
 
     h2 {
       .title2();
+      color: black;
     }
 
     p {
@@ -343,14 +360,15 @@ header {
 
     h3 {
       .title3();
+      color: black;
     }
 
     ul {
-      border: 1px solid @light-gray;
+      border: 1px solid @table-gray;
       border-radius: @border-radius;
 
       li {
-        border-bottom: 1px solid @light-gray;
+        border-bottom: 1px solid @table-gray;
         padding: @medium-spacing;
       }
 
@@ -359,4 +377,39 @@ header {
       }
     }
   }
+}
+
+#history {
+  font-size: @regular-font;
+  h2 {
+    .title2();
+    color: black;
+  }
+
+  table {
+    width: 100%;
+    tr {
+      border: 1px solid @table-gray;
+
+      .strong {
+        font-weight: 700;
+        color: #0f0e1f;
+      }
+
+      th {
+        padding: @medium-spacing;
+      }
+    }
+    tr:nth-child(even) {
+      background-color: @bg-gray;
+    }
+  }
+}
+
+#main-footer {
+  background: @dark-gray;
+  color: white;
+  margin-top: @large-spacing;
+  font-size: @regular-font;
+  text-align: center;
 }
